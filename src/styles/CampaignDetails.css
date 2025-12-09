@@ -1,0 +1,213 @@
+.campaign-details-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: #d4af37;
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-back:hover {
+  color: #a0805a;
+}
+
+.campaign-details-card {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+  border: 2px solid #8b6f47;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.campaign-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.campaign-header-content {
+  flex: 1;
+}
+
+.campaign-details-header h1 {
+  font-family: 'Colchester', 'Georgia', serif;
+  color: #d4af37;
+  font-size: 2.5em;
+  margin: 0 0 15px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+}
+
+.campaign-info-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.campaign-description {
+  color: #b8a082;
+  font-size: 1em;
+  font-style: italic;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.3);
+} 
+
+.campaign-description em {
+  color: #6b5638;
+  font-style: italic;
+}
+
+.campaign-meta-item {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.campaign-meta-label {
+  color: #b8a082;
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+.campaign-meta-value {
+  color: #e0d4b8;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.campaign-details-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 8px 12px;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.btn-edit .material-icons,
+.btn-delete .material-icons {
+  font-size: 20px;
+}
+
+.btn-edit {
+  color: #d4af37;
+  border-color: #8b6f47;
+}
+
+.btn-edit:hover {
+  background: rgba(139, 111, 71, 0.3);
+  border-color: #d4af37;
+}
+
+.btn-delete {
+  color: #ff6b6b;
+  border-color: #8b0000;
+}
+
+.btn-delete:hover {
+  background: rgba(139, 0, 0, 0.3);
+  border-color: #ff6b6b;
+}
+
+.content-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.btn-content {
+  background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
+  color: #fff;
+  border: 2px solid #d4af37;
+  padding: 15px 30px;
+  font-size: 0.8em;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 200px;
+}
+
+.btn-content:hover {
+  background: linear-gradient(135deg, #a0805a 0%, #8b6f47 100%);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-content:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: rgba(139, 111, 71, 0.2);
+  color: #d4af37;
+  border: 2px solid #8b6f47;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(139, 111, 71, 0.4);
+  border-color: #d4af37;
+}
+
+@media (max-width: 768px) {
+  .campaign-details-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .campaign-details-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .content-actions {
+    flex-direction: column;
+  }
+
+  .btn-content {
+    width: 100%;
+  }
+}
+

@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Colchester';
+  src: url('../fonts/COLCBL__.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #e0d4b8;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Colchester', 'Georgia', serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+

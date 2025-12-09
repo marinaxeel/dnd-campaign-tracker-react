@@ -1,0 +1,146 @@
+.campaign-form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.campaign-form-card {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+  border: 2px solid #8b6f47;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.campaign-form-card h2 {
+  font-family: 'Colchester', 'Georgia', serif;
+  color: #d4af37;
+  font-size: 2em;
+  margin-bottom: 25px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #8b6f47;
+  padding-bottom: 15px;
+  font-weight: normal;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #d4af37;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(26, 26, 26, 0.8);
+  border: 2px solid #8b6f47;
+  border-radius: 5px;
+  color: #e0d4b8;
+  font-family: 'Georgia', serif;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #6b5638;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #8b6f47;
+}
+
+.campaign-form-card .btn-primary,
+.form-actions .btn-primary {
+  background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
+  color: #fff;
+  border: 2px solid #d4af37;
+  padding: 12px 24px;
+  font-size: 0.8em !important;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.campaign-form-card .btn-primary:hover,
+.form-actions .btn-primary:hover {
+  background: linear-gradient(135deg, #a0805a 0%, #8b6f47 100%);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.campaign-form-card .btn-primary:active,
+.form-actions .btn-primary:active {
+  transform: translateY(0);
+}
+
+.campaign-form-card .btn-secondary,
+.form-actions .btn-secondary {
+  background: rgba(139, 111, 71, 0.2);
+  color: #d4af37;
+  border: 2px solid #8b6f47;
+  padding: 12px 24px;
+  font-size: 0.8em !important;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.campaign-form-card .btn-secondary:hover,
+.form-actions .btn-secondary:hover {
+  background: rgba(139, 111, 71, 0.4);
+  border-color: #d4af37;
+}
+
+@media (max-width: 768px) {
+  .campaign-form-card {
+    padding: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}
+

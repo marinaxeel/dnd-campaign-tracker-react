@@ -1,0 +1,179 @@
+.campaign-list-container {
+  width: 100%;
+}
+
+.campaign-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #8b6f47;
+}
+
+.campaign-list-header h1 {
+  font-family: 'Colchester', 'Georgia', serif;
+  font-size: 2.5em;
+  color: #d4af37;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
+  color: #fff;
+  border: 2px solid #d4af37;
+  padding: 12px 24px;
+  font-size: 0.6em;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #a0805a 0%, #8b6f47 100%);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(139, 111, 71, 0.1);
+  border: 2px dashed #8b6f47;
+  border-radius: 10px;
+  color: #b8a082;
+  font-size: 1.2em;
+}
+
+.campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.campaign-card {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+  border: 2px solid #8b6f47;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.campaign-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  border-color: #d4af37;
+  cursor: pointer;
+}
+
+.campaign-card-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.campaign-card-simple h2 {
+  font-family: 'Georgia', serif;
+  color: #d4af37;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+  flex: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+}
+
+.btn-details {
+  background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
+  color: #fff;
+  border: 2px solid #d4af37;
+  padding: 10px 20px;
+  font-size: 0.6em;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-details:hover {
+  background: linear-gradient(135deg, #a0805a 0%, #8b6f47 100%);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-details:active {
+  transform: translateY(0);
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 6px 12px;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  background: rgba(139, 111, 71, 0.3);
+  color: #d4af37;
+  border-color: #8b6f47;
+}
+
+.btn-edit:hover {
+  background: rgba(139, 111, 71, 0.5);
+}
+
+.btn-delete {
+  background: rgba(139, 0, 0, 0.3);
+  color: #ff6b6b;
+  border-color: #8b0000;
+}
+
+.btn-delete:hover {
+  background: rgba(139, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .campaign-list-header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .campaigns-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campaign-card-simple {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .btn-details {
+    width: 100%;
+  }
+}
+
