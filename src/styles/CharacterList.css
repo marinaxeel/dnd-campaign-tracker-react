@@ -1,0 +1,222 @@
+.character-list-container {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.character-list-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.character-list-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.characters-simple-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.character-simple-item {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+  border: 2px solid #8b6f47;
+  border-radius: 8px;
+  padding: 15px 20px;
+  transition: all 0.3s ease;
+}
+
+.character-simple-item:hover {
+  border-color: #d4af37;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transform: translateX(5px);
+}
+
+.character-name {
+  color: #d4af37;
+  font-family: 'Georgia', serif;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: block;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+}
+
+.character-name:hover {
+  color: #e0d4b8;
+}
+
+.characters-section {
+  width: 100%;
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(26, 26, 26, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(139, 111, 71, 0.3);
+}
+
+.btn-content.active {
+  background: linear-gradient(135deg, #a0805a 0%, #8b6f47 100%);
+  border-color: #d4af37;
+  box-shadow: 0 6px 12px rgba(212, 175, 55, 0.4);
+}
+
+.characters-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.character-detail-card {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+  border: 2px solid #8b6f47;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.character-detail-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  border-color: #d4af37;
+}
+
+.character-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #8b6f47;
+}
+
+.character-card-header h3 {
+  font-family: 'Colchester', 'Georgia', serif;
+  color: #d4af37;
+  font-size: 1.4em;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+}
+
+.character-level {
+  color: #b8a082;
+  font-size: 0.9em;
+  font-family: 'Georgia', serif;
+}
+
+.character-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.character-card-main-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.character-info-box {
+  background: rgba(26, 26, 26, 0.5);
+  border: 1px solid #8b6f47;
+  border-radius: 5px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.character-info-box .info-label {
+  color: #b8a082;
+  font-size: 0.75em;
+  font-family: 'Georgia', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.character-info-box .info-value {
+  color: #e0d4b8;
+  font-size: 0.95em;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+.character-card-combat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.character-card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.stat-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: rgba(26, 26, 26, 0.5);
+  border: 1px solid #8b6f47;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.stat-mini .stat-label {
+  color: #b8a082;
+  font-size: 0.75em;
+  font-family: 'Georgia', serif;
+  text-transform: uppercase;
+}
+
+.stat-mini .stat-value {
+  color: #d4af37;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+.stat-mini .stat-mod {
+  color: #6b5638;
+  font-size: 0.75em;
+  font-family: 'Georgia', serif;
+}
+
+@media (max-width: 768px) {
+  .character-list-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .character-list-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .character-list-actions .btn-primary,
+  .character-list-actions .btn-secondary {
+    width: 100%;
+  }
+
+  .characters-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .character-card-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

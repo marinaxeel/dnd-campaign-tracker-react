@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Campaign } from '../types/Campaign';
+import { Character } from '../types/Character';
+import CharacterList from './CharacterList';
 import '../styles/CampaignDetails.css';
 
 interface CampaignDetailsProps {
   campaign: Campaign;
+  characters: Character[];
+  campaigns: Campaign[];
   onBack: () => void;
   onEdit: () => void;
   onDelete: () => void;
-  onViewCharacters: () => void;
   onViewDiaryEntries: () => void;
+  onCharacterUpdate: (character: Character) => void;
+  onCharacterDelete: (characterId: string) => void;
+  onCharacterAdd: (character: Character) => void;
+  onOpenCharacterForm: (character: Character | null, isCreating: boolean) => void;
 }
 
 const CampaignDetails: React.FC<CampaignDetailsProps> = ({
   campaign,
+  characters,
+  campaigns,
   onBack,
   onEdit,
   onDelete,
-  onViewCharacters,
-  onViewDiaryEntries
+  onViewDiaryEntries,
+  onCharacterUpdate,
+  onCharacterDelete,
+  onCharacterAdd,
+  onOpenCharacterForm
 }) => {
+  const [activeTab, setActiveTab] = useState<'characters' | 'diary'>('characters');
+
   return (
     <div>
       <div>
@@ -74,13 +88,43 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
               </button>
             </div>
           </div>
-          <div className="content-actions">
-            <button className="btn-content" onClick={onViewCharacters}>
-              Personaggi
-            </button>
-            <button className="btn-content" onClick={onViewDiaryEntries}>
-              Voci Diario
-            </button>
+          <div className="tabs-container">
+            <div className="tabs-header">
+              <button 
+                className={`tab-button ${activeTab === 'characters' ? 'active' : ''}`}
+                onClick={() => setActiveTab('characters')}
+              >
+                Personaggi
+              </button>
+              <button 
+                className={`tab-button ${activeTab === 'diary' ? 'active' : ''}`}
+                onClick={() => setActiveTab('diary')}
+              >
+                Voci Diario
+              </button>
+            </div>
+            <div className="tabs-content">
+              {activeTab === 'characters' && (
+                <div className="tab-panel">
+                  <CharacterList
+                    characters={characters}
+                    campaigns={campaigns.map(c => ({ id: c.id, nome: c.nome }))}
+                    onUpdate={onCharacterUpdate}
+                    onDelete={onCharacterDelete}
+                    onAdd={onCharacterAdd}
+                    onOpenCharacterForm={onOpenCharacterForm}
+                    campaignId={campaign.id}
+                  />
+                </div>
+              )}
+              {activeTab === 'diary' && (
+                <div className="tab-panel">
+                  <div className="empty-state">
+                    <p>Le voci di diario saranno disponibili a breve</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

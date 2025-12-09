@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding-top: 20px;  
   gap: 20px;
 }
 
@@ -25,7 +25,6 @@
   border: 2px solid #8b6f47;
   border-radius: 10px;
   padding: 30px;
-  max-width: 800px;
   width: 100%;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
@@ -134,41 +133,64 @@
   border-color: #ff6b6b;
 }
 
-.content-actions {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.tabs-container {
   width: 100%;
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: 30px;
 }
 
-.btn-content {
-  background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
-  color: #fff;
-  border: 2px solid #d4af37;
+.tabs-header {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #8b6f47;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  background: transparent;
+  color: #b8a082;
+  border: none;
+  border-bottom: 3px solid transparent;
   padding: 15px 30px;
-  font-size: 0.8em;
+  font-size: 1em;
   cursor: pointer;
-  border-radius: 5px;
   font-family: 'Georgia', serif;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  flex: 1;
-  min-width: 200px;
+  position: relative;
+  bottom: -2px;
 }
 
-.btn-content:hover {
-  background: linear-gradient(135deg, #a0805a 0%, #8b6f47 100%);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
+.tab-button:hover {
+  color: #d4af37;
+  background: rgba(139, 111, 71, 0.1);
 }
 
-.btn-content:active {
-  transform: translateY(0);
+.tab-button.active {
+  color: #d4af37;
+  border-bottom-color: #d4af37;
+  background: rgba(139, 111, 71, 0.2);
+}
+
+.tabs-content {
+  width: 100%;
+  min-height: 200px;
+}
+
+.tab-panel {
+  width: 100%;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(139, 111, 71, 0.1);
+  border: 2px dashed #8b6f47;
+  border-radius: 10px;
+  color: #b8a082;
+  font-size: 1.2em;
+  font-family: 'Georgia', serif;
 }
 
 .btn-secondary {
@@ -202,12 +224,16 @@
     justify-content: flex-end;
   }
 
-  .content-actions {
-    flex-direction: column;
+  .tabs-header {
+    flex-direction: row;
+    overflow-x: auto;
   }
 
-  .btn-content {
-    width: 100%;
+  .tab-button {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 20px;
+    font-size: 0.9em;
   }
 }
 

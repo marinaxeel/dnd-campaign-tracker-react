@@ -9,6 +9,21 @@
   margin-bottom: 30px;
   padding-bottom: 20px;
   border-bottom: 2px solid #8b6f47;
+  gap: 20px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: #d4af37;
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Georgia', serif;
+}
+
+.btn-back:hover {
+  color: #a0805a;
 }
 
 .campaign-list-header h1 {

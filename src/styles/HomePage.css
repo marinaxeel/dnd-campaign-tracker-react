@@ -1,0 +1,92 @@
+.home-page-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.home-header {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.home-header h1 {
+  font-family: 'Colchester', 'Georgia', serif;
+  font-size: 3.5em;
+  color: #d4af37;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.home-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.home-card {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+  border: 2px solid #8b6f47;
+  border-radius: 15px;
+  padding: 40px 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.home-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+  border-color: #d4af37;
+}
+
+.home-card-icon {
+  margin-bottom: 20px;
+}
+
+.home-card-icon .material-icons {
+  font-size: 64px;
+  color: #d4af37;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.home-card h2 {
+  font-family: 'Colchester', 'Georgia', serif;
+  color: #d4af37;
+  font-size: 2em;
+  margin: 0 0 15px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+}
+
+.home-card p {
+  color: #b8a082;
+  font-size: 1.1em;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .home-header h1 {
+    font-size: 2.5em;
+  }
+
+  .home-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .home-card {
+    padding: 30px 20px;
+  }
+}
+
