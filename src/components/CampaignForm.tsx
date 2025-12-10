@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Campaign } from '../types/Campaign';
+import { Campaign, CampaignStatus } from '../types/Campaign';
 import '../styles/CampaignForm.css';
 
 interface CampaignFormProps {
@@ -12,12 +12,14 @@ const CampaignForm: React.FC<CampaignFormProps> = ({ campaign, onSave, onCancel 
   const [nome, setNome] = useState('');
   const [descrizione, setDescrizione] = useState('');
   const [master, setMaster] = useState('');
+  const [stato, setStato] = useState<CampaignStatus>('nuova');
 
   useEffect(() => {
     if (campaign) {
       setNome(campaign.nome);
       setDescrizione(campaign.descrizione);
       setMaster(campaign.master);
+      setStato(campaign.stato || 'nuova');
     }
   }, [campaign]);
 
@@ -35,7 +37,8 @@ const CampaignForm: React.FC<CampaignFormProps> = ({ campaign, onSave, onCancel 
       descrizione: descrizione.trim(),
       master: master.trim(),
       dataCreazione: campaign?.dataCreazione || now,
-      dataUltimaModifica: now
+      dataUltimaModifica: now,
+      stato: stato
     };
 
     onSave(campaignData);
@@ -68,6 +71,19 @@ const CampaignForm: React.FC<CampaignFormProps> = ({ campaign, onSave, onCancel 
               required
               placeholder="Nome del Dungeon Master"
             />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="stato">Stato</label>
+            <select
+              id="stato"
+              value={stato}
+              onChange={(e) => setStato(e.target.value as CampaignStatus)}
+            >
+              <option value="nuova">Nuova</option>
+              <option value="in corso">In Corso</option>
+              <option value="conclusa">Conclusa</option>
+            </select>
           </div>
 
           <div className="form-group">

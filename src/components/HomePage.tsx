@@ -4,11 +4,13 @@ import '../styles/HomePage.css';
 interface HomePageProps {
   onNavigateToCampaigns: () => void;
   onNavigateToCharacters: () => void;
+  onNavigateToDiaryEntries: () => void;
 }
 
 const HomePage: React.FC<HomePageProps> = ({
   onNavigateToCampaigns,
-  onNavigateToCharacters
+  onNavigateToCharacters,
+  onNavigateToDiaryEntries
 }) => {
   return (
     <div className="home-page-container">
@@ -18,7 +20,7 @@ const HomePage: React.FC<HomePageProps> = ({
       <div className="home-cards-grid">
         <div className="home-card" onClick={onNavigateToCampaigns}>
           <div className="home-card-icon">
-            <span className="material-icons">history_edu</span>
+            <span className="material-icons">flag</span>
           </div>
           <h2>Campagne</h2>
           <p>Gestisci le tue campagne di Dungeons & Dragons</p>
@@ -29,6 +31,13 @@ const HomePage: React.FC<HomePageProps> = ({
           </div>
           <h2>Personaggi</h2>
           <p>Visualizza tutti i personaggi delle tue campagne</p>
+        </div>
+        <div className="home-card" onClick={onNavigateToDiaryEntries}>
+          <div className="home-card-icon">
+            <span className="material-icons">history_edu</span>
+          </div>
+          <h2>Voci di Diario</h2>
+          <p>Gestisci le voci di diario delle tue sessioni</p>
         </div>
       </div>
     </div>

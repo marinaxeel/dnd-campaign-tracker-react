@@ -10,9 +10,10 @@ import '../styles/CampaignList.css';
 
 interface CampaignListProps {
   onBackToHome?: () => void;
+  onOpenDiaryEntryForm?: (entry: any, isCreating: boolean) => void;
 }
 
-const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
+const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome, onOpenDiaryEntryForm }) => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [characters, setCharacters] = useState<Character[]>([]);
   const [editingCampaign, setEditingCampaign] = useState<Campaign | null>(null);
@@ -237,6 +238,7 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
         onCharacterDelete={handleCharacterDelete}
         onCharacterAdd={handleCharacterAdd}
         onOpenCharacterForm={(character, isCreating) => handleOpenCharacterForm(character, isCreating, selectedCampaign.nome)}
+        onOpenDiaryEntryForm={onOpenDiaryEntryForm || (() => {})}
         breadcrumbs={campaignDetailsBreadcrumbs}
       />
     );

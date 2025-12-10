@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Campaign } from '../types/Campaign';
 import { Character } from '../types/Character';
+import { DiaryEntry } from '../types/DiaryEntry';
 import CharacterList from './CharacterList';
 import Breadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
+import { getDiaryEntries } from '../utils/storage';
 import '../styles/CampaignDetails.css';
 
 interface CampaignDetailsProps {
@@ -17,6 +19,7 @@ interface CampaignDetailsProps {
   onCharacterDelete: (characterId: string) => void;
   onCharacterAdd: (character: Character) => void;
   onOpenCharacterForm: (character: Character | null, isCreating: boolean, campaignName?: string) => void;
+  onOpenDiaryEntryForm: (entry: DiaryEntry | null, isCreating: boolean) => void;
   breadcrumbs?: BreadcrumbItem[];
 }
 
@@ -32,9 +35,48 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
   onCharacterDelete,
   onCharacterAdd,
   onOpenCharacterForm,
+  onOpenDiaryEntryForm,
   breadcrumbs
 }) => {
   const [activeTab, setActiveTab] = useState<'characters' | 'diary'>('characters');
+  const [diaryEntries, setDiaryEntries] = useState<DiaryEntry[]>([]);
+
+  useEffect(() => {
+    loadDiaryEntries();
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === 'diary') {
+      loadDiaryEntries();
+    }
+  }, [activeTab]);
+
+  const loadDiaryEntries = () => {
+    const allEntries = getDiaryEntries();
+    const filtered = allEntries.filter(e => e.campaignId === campaign.id);
+    filtered.sort((a, b) => {
+      const dateA = new Date(a.dataSessione).getTime();
+      const dateB = new Date(b.dataSessione).getTime();
+      return dateB - dateA;
+    });
+    setDiaryEntries(filtered);
+  };
+
+  const formatDate = (dateString: string): string => {
+    return new Date(dateString).toLocaleDateString('it-IT', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    });
+  };
+
+  const handleCreateEntry = () => {
+    onOpenDiaryEntryForm(null, true);
+  };
+
+  const handleEntryClick = (entry: DiaryEntry) => {
+    onOpenDiaryEntryForm(entry, false);
+  };
 
   return (
     <div>
@@ -54,6 +96,12 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
                   <span className="campaign-meta-label">Dungeon Master:</span>
                   <span className="campaign-meta-value">{campaign.master}</span>
                 </div>
+                {campaign.stato && (
+                  <div className="campaign-meta-item">
+                    <span className="campaign-meta-label">Stato:</span>
+                    <span className="campaign-meta-value campaign-status">{campaign.stato}</span>
+                  </div>
+                )}
                 <div className="campaign-meta-item">
                   <span className="campaign-meta-label">Creata:</span>
                   <span className="campaign-meta-value">
@@ -121,9 +169,40 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
               )}
               {activeTab === 'diary' && (
                 <div className="tab-panel">
-                  <div className="empty-state">
-                    <p>Le voci di diario saranno disponibili a breve</p>
+                  <div className="diary-entries-header">
+                    <button className="btn-primary" onClick={handleCreateEntry}>
+                      Nuova Voce
+                    </button>
                   </div>
+                  {diaryEntries.length === 0 ? (
+                    <div className="empty-state">
+                      <p>Nessuna voce di diario per questa campagna</p>
+                    </div>
+                  ) : (
+                    <div className="diary-entries-list">
+                      {diaryEntries.map(entry => (
+                        <div
+                          key={entry.id}
+                          className="diary-entry-item"
+                          onClick={() => handleEntryClick(entry)}
+                        >
+                          <div className="diary-entry-item-header">
+                            <span className="diary-entry-item-date">{formatDate(entry.dataSessione)}</span>
+                            {entry.titolo && (
+                              <h4 className="diary-entry-item-title">{entry.titolo}</h4>
+                            )}
+                          </div>
+                          {entry.testo && (
+                            <p className="diary-entry-item-preview">
+                              {entry.testo.length > 150
+                                ? entry.testo.substring(0, 150) + '...'
+                                : entry.testo}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -160,7 +160,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
     setBackground('');
     setAllineamento('');
     setXp(0);
-    setVelocita(30);
+    setVelocita(9);
     setProficiencyBonus(2);
     setSelectedCampaigns([]);
     setStoria('');

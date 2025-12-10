@@ -6,7 +6,9 @@ Applicazione React + TypeScript per la gestione di campagne di Dungeons and Drag
 
 - **CRUD Campagne**: Creazione, lettura, aggiornamento ed eliminazione di campagne
 - **CRUD Personaggi**: Creazione, lettura, aggiornamento ed eliminazione di personaggi D&D
+- **CRUD Voci di Diario**: Creazione, lettura, aggiornamento ed eliminazione di voci di diario per le sessioni
 - Personaggi associabili a una o più campagne
+- Voci di diario associate a campagne con selezione multipla di personaggi presenti
 - Persistenza dati tramite localStorage
 - Salvataggio automatico su file JSON (`dnd_data.json`)
 - Tema scuro con stile medievale fantasy
@@ -20,6 +22,7 @@ Ogni campagna contiene:
 - Data creazione
 - Master (Dungeon Master)
 - Data ultima modifica
+- Stato (nuova, in corso, conclusa)
 
 ## Struttura Personaggio
 
@@ -39,6 +42,17 @@ Ogni personaggio contiene:
 - Bonus Competenza
 - Saving Throws
 - Campagne associate
+
+## Struttura Voce di Diario
+
+Ogni voce di diario contiene:
+
+- Data sessione
+- Campagna associata
+- Personaggi presenti (multiselect con i personaggi associati alla campagna)
+- Testo libero (textarea)
+- Data/ora creazione
+- Data/ora modifica
 
 ## Setup
 

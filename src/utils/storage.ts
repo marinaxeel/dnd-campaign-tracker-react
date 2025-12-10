@@ -1,5 +1,6 @@
 import { Campaign } from '../types/Campaign';
 import { Character } from '../types/Character';
+import { DiaryEntry } from '../types/DiaryEntry';
 
 const STORAGE_KEY = 'dnd_data';
 const JSON_FILE_NAME = 'dnd_data.json';
@@ -7,11 +8,13 @@ const JSON_FILE_NAME = 'dnd_data.json';
 interface DndData {
   campaigns: Campaign[];
   characters: Character[];
+  diaryEntries: DiaryEntry[];
 }
 
 const getDefaultData = (): DndData => ({
   campaigns: [],
-  characters: []
+  characters: [],
+  diaryEntries: []
 });
 
 export const getData = (): DndData => {
@@ -20,11 +23,12 @@ export const getData = (): DndData => {
   try {
     const parsed = JSON.parse(stored);
     if (Array.isArray(parsed)) {
-      return { campaigns: parsed, characters: [] };
+      return { campaigns: parsed, characters: [], diaryEntries: [] };
     }
     return {
       campaigns: parsed.campaigns || [],
-      characters: parsed.characters || []
+      characters: parsed.characters || [],
+      diaryEntries: parsed.diaryEntries || []
     };
   } catch {
     return getDefaultData();
@@ -69,6 +73,16 @@ export const downloadJSON = (data: DndData): void => {
   URL.revokeObjectURL(url);
 };
 
+export const getDiaryEntries = (): DiaryEntry[] => {
+  return getData().diaryEntries;
+};
+
+export const saveDiaryEntries = (diaryEntries: DiaryEntry[]): void => {
+  const data = getData();
+  data.diaryEntries = diaryEntries;
+  saveData(data);
+};
+
 export const loadFromJSON = (file: File): Promise<DndData> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -77,11 +91,12 @@ export const loadFromJSON = (file: File): Promise<DndData> => {
         const content = e.target?.result as string;
         const parsed = JSON.parse(content);
         if (Array.isArray(parsed)) {
-          resolve({ campaigns: parsed, characters: [] });
-        } else if (parsed.campaigns || parsed.characters) {
+          resolve({ campaigns: parsed, characters: [], diaryEntries: [] });
+        } else if (parsed.campaigns || parsed.characters || parsed.diaryEntries) {
           resolve({
             campaigns: parsed.campaigns || [],
-            characters: parsed.characters || []
+            characters: parsed.characters || [],
+            diaryEntries: parsed.diaryEntries || []
           });
         } else {
           reject(new Error('Invalid JSON format'));

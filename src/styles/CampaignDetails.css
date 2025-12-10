@@ -87,6 +87,10 @@
   font-weight: bold;
 }
 
+.campaign-status {
+  text-transform: capitalize;
+}
+
 .campaign-details-actions {
   display: flex;
   gap: 10px;
@@ -235,5 +239,66 @@
     padding: 12px 20px;
     font-size: 0.9em;
   }
+}
+
+.diary-entries-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.diary-entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.diary-entry-item {
+  background: rgba(139, 111, 71, 0.1);
+  border: 2px solid #8b6f47;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.diary-entry-item:hover {
+  background: rgba(139, 111, 71, 0.2);
+  border-color: #d4af37;
+  transform: translateX(5px);
+}
+
+.diary-entry-item-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+.diary-entry-item-date {
+  color: #b8a082;
+  font-family: 'Georgia', serif;
+  font-size: 0.95em;
+  font-weight: normal;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.diary-entry-item-title {
+  color: #d4af37;
+  font-family: 'Colchester', 'Georgia', serif;
+  font-size: 1.2em;
+  margin: 0;
+  font-weight: normal;
+  flex: 1;
+}
+
+.diary-entry-item-preview {
+  color: #b8a082;
+  font-family: 'Georgia', serif;
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
 }
 

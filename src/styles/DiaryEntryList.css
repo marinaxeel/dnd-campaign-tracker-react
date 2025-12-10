@@ -1,0 +1,82 @@
+.diary-entry-list-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.diary-entry-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #8b6f47;
+}
+
+.diary-entry-list-header h1 {
+  font-family: 'Colchester', 'Georgia', serif;
+  font-size: 2.5em;
+  color: #d4af37;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.diary-entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.diary-entry-card {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+  border: 2px solid #8b6f47;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+.diary-entry-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  border-color: #d4af37;
+}
+
+.diary-entry-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.diary-entry-card-content {
+  flex: 1;
+}
+
+.diary-entry-card-header h3 {
+  font-family: 'Colchester', 'Georgia', serif;
+  color: #d4af37;
+  font-size: 1.3em;
+  margin: 0;
+  font-weight: normal;
+}
+
+.diary-entry-date {
+  color: #b8a082;
+  font-size: 0.95em;
+  font-family: 'Georgia', serif;
+  font-weight: normal;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.diary-entry-card-campaign {
+  color: #b8a082;
+  font-size: 0.85em;
+  font-family: 'Georgia', serif;
+  margin: 5px 0 0 0;
+  font-style: italic;
+}
+
+
