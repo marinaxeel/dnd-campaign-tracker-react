@@ -5,6 +5,7 @@ import { getCampaigns, saveCampaigns, getCharacters, saveCharacters } from '../u
 import CampaignForm from './CampaignForm';
 import CampaignDetails from './CampaignDetails';
 import CharacterDetails from './CharacterDetails';
+import Breadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
 import '../styles/CampaignList.css';
 
 interface CampaignListProps {
@@ -21,6 +22,7 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
   const [showCharacterForm, setShowCharacterForm] = useState(false);
   const [editingCharacter, setEditingCharacter] = useState<Character | null>(null);
   const [isCreatingCharacter, setIsCreatingCharacter] = useState(false);
+  const [currentCampaignName, setCurrentCampaignName] = useState<string>('');
 
   useEffect(() => {
     loadCampaigns();
@@ -116,10 +118,15 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
     saveCharacters(updated);
   };
 
-  const handleOpenCharacterForm = (character: Character | null, isCreating: boolean) => {
+  const handleOpenCharacterForm = (character: Character | null, isCreating: boolean, campaignName?: string) => {
     setEditingCharacter(character);
     setIsCreatingCharacter(isCreating);
     setShowCharacterForm(true);
+    if (campaignName) {
+      setCurrentCampaignName(campaignName);
+    } else {
+      setCurrentCampaignName('');
+    }
   };
 
   const handleCharacterFormSave = (character: Character) => {
@@ -134,12 +141,14 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
     setShowCharacterForm(false);
     setEditingCharacter(null);
     setIsCreatingCharacter(false);
+    setCurrentCampaignName('');
   };
 
   const handleCharacterFormCancel = () => {
     setShowCharacterForm(false);
     setEditingCharacter(null);
     setIsCreatingCharacter(false);
+    setCurrentCampaignName('');
   };
 
   const handleCharacterFormDelete = (characterId: string) => {
@@ -148,6 +157,7 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
       setShowCharacterForm(false);
       setEditingCharacter(null);
       setIsCreatingCharacter(false);
+      setCurrentCampaignName('');
     }
   };
 
@@ -166,6 +176,33 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
   }
 
   if (showCharacterForm) {
+    const breadcrumbs: BreadcrumbItem[] = [];
+    if (onBackToHome) {
+      breadcrumbs.push({ label: 'Home', onClick: onBackToHome });
+    }
+    breadcrumbs.push({ label: 'Campagne', onClick: () => {
+      setShowCharacterForm(false);
+      setEditingCharacter(null);
+      setIsCreatingCharacter(false);
+      setCurrentCampaignName('');
+      setSelectedCampaign(null);
+    }});
+    if (currentCampaignName && selectedCampaign) {
+      breadcrumbs.push({ label: currentCampaignName, onClick: () => {
+        setShowCharacterForm(false);
+        setEditingCharacter(null);
+        setIsCreatingCharacter(false);
+        setCurrentCampaignName('');
+      }});
+      breadcrumbs.push({ label: 'Personaggi', onClick: () => {
+        setShowCharacterForm(false);
+        setEditingCharacter(null);
+        setIsCreatingCharacter(false);
+        setCurrentCampaignName('');
+      }});
+    }
+    breadcrumbs.push({ label: isCreatingCharacter ? 'Nuovo Personaggio' : editingCharacter?.nome || '' });
+
     return (
       <CharacterDetails
         character={editingCharacter}
@@ -174,11 +211,19 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
         onSave={handleCharacterFormSave}
         onDelete={handleCharacterFormDelete}
         onBack={handleCharacterFormCancel}
+        breadcrumbs={breadcrumbs}
       />
     );
   }
 
   if (selectedCampaign) {
+    const campaignDetailsBreadcrumbs: BreadcrumbItem[] = [];
+    if (onBackToHome) {
+      campaignDetailsBreadcrumbs.push({ label: 'Home', onClick: onBackToHome });
+    }
+    campaignDetailsBreadcrumbs.push({ label: 'Campagne', onClick: handleBackToList });
+    campaignDetailsBreadcrumbs.push({ label: selectedCampaign.nome });
+
     return (
       <CampaignDetails
         campaign={selectedCampaign}
@@ -191,19 +236,24 @@ const CampaignList: React.FC<CampaignListProps> = ({ onBackToHome }) => {
         onCharacterUpdate={handleCharacterUpdate}
         onCharacterDelete={handleCharacterDelete}
         onCharacterAdd={handleCharacterAdd}
-        onOpenCharacterForm={handleOpenCharacterForm}
+        onOpenCharacterForm={(character, isCreating) => handleOpenCharacterForm(character, isCreating, selectedCampaign.nome)}
+        breadcrumbs={campaignDetailsBreadcrumbs}
       />
     );
   }
 
+  const campaignListBreadcrumbs: BreadcrumbItem[] = [];
+  if (onBackToHome) {
+    campaignListBreadcrumbs.push({ label: 'Home', onClick: onBackToHome });
+  }
+  campaignListBreadcrumbs.push({ label: 'Campagne' });
+
   return (
     <div className="campaign-list-container">
+      {campaignListBreadcrumbs.length > 0 && (
+        <Breadcrumbs items={campaignListBreadcrumbs} />
+      )}
       <div className="campaign-list-header">
-        {onBackToHome && (
-          <button className="btn-back" onClick={onBackToHome}>
-            Torna alla home
-          </button>
-        )}
         <h1>Campagne</h1>
         <button className="btn-primary" onClick={handleCreate}>
           Crea nuova

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Campaign } from '../types/Campaign';
 import { Character } from '../types/Character';
 import CharacterList from './CharacterList';
+import Breadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
 import '../styles/CampaignDetails.css';
 
 interface CampaignDetailsProps {
@@ -15,7 +16,8 @@ interface CampaignDetailsProps {
   onCharacterUpdate: (character: Character) => void;
   onCharacterDelete: (characterId: string) => void;
   onCharacterAdd: (character: Character) => void;
-  onOpenCharacterForm: (character: Character | null, isCreating: boolean) => void;
+  onOpenCharacterForm: (character: Character | null, isCreating: boolean, campaignName?: string) => void;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const CampaignDetails: React.FC<CampaignDetailsProps> = ({
@@ -29,17 +31,16 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
   onCharacterUpdate,
   onCharacterDelete,
   onCharacterAdd,
-  onOpenCharacterForm
+  onOpenCharacterForm,
+  breadcrumbs
 }) => {
   const [activeTab, setActiveTab] = useState<'characters' | 'diary'>('characters');
 
   return (
     <div>
-      <div>
-        <button className="btn-back" onClick={onBack}>
-          Torna alle campagne
-        </button>
-      </div>
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <Breadcrumbs items={breadcrumbs} />
+      )}
       <div className="campaign-details-container">
         <div className="campaign-details-card">
           <div className="campaign-details-header">
@@ -114,6 +115,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
                     onAdd={onCharacterAdd}
                     onOpenCharacterForm={onOpenCharacterForm}
                     campaignId={campaign.id}
+                    campaignName={campaign.nome}
                   />
                 </div>
               )}

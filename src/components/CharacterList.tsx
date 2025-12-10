@@ -9,8 +9,9 @@ interface CharacterListProps {
   onUpdate: (character: Character) => void;
   onDelete: (characterId: string) => void;
   onAdd: (character: Character) => void;
-  onOpenCharacterForm: (character: Character | null, isCreating: boolean) => void;
+  onOpenCharacterForm: (character: Character | null, isCreating: boolean, campaignName?: string) => void;
   campaignId?: string;
+  campaignName?: string;
 }
 
 const CharacterList: React.FC<CharacterListProps> = ({
@@ -20,7 +21,8 @@ const CharacterList: React.FC<CharacterListProps> = ({
   onDelete,
   onAdd,
   onOpenCharacterForm,
-  campaignId
+  campaignId,
+  campaignName
 }) => {
   const filteredCharacters = campaignId
     ? characters.filter(c => c.campaignIds.includes(campaignId))
@@ -31,11 +33,11 @@ const CharacterList: React.FC<CharacterListProps> = ({
   };
 
   const handleCharacterCardClick = (character: Character) => {
-    onOpenCharacterForm(character, false);
+    onOpenCharacterForm(character, false, campaignName);
   };
 
   const handleCreate = () => {
-    onOpenCharacterForm(null, true);
+    onOpenCharacterForm(null, true, campaignName);
   };
 
   return (

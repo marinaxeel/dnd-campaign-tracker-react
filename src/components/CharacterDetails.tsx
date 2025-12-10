@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Character } from '../types/Character';
+import Breadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
 import '../styles/CharacterDetails.css';
 
 interface CharacterDetailsProps {
@@ -9,6 +10,7 @@ interface CharacterDetailsProps {
   onSave: (character: Character) => void;
   onDelete: (characterId: string) => void;
   onBack: () => void;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const CLASS_OPTIONS = [
@@ -89,7 +91,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   isCreating,
   onSave,
   onDelete,
-  onBack
+  onBack,
+  breadcrumbs
 }) => {
   const [nome, setNome] = useState('');
   const [classe, setClasse] = useState('');
@@ -107,7 +110,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   const [background, setBackground] = useState('');
   const [allineamento, setAllineamento] = useState('');
   const [xp, setXp] = useState(0);
-  const [velocita, setVelocita] = useState(30);
+  const [velocita, setVelocita] = useState(9);
   const [proficiencyBonus, setProficiencyBonus] = useState(2);
   const [selectedCampaigns, setSelectedCampaigns] = useState<string[]>([]);
   const [storia, setStoria] = useState('');
@@ -212,10 +215,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
 
   return (
     <div className="character-details-container">
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <Breadcrumbs items={breadcrumbs} />
+      )}
       <div className="character-details-header">
-        <button className="btn-back" onClick={onBack}>
-          Torna alla campagna
-        </button>
         <h1>{isCreating ? 'Nuovo Personaggio' : character?.nome}</h1>
         {!isCreating && character && (
           <button className="btn-delete" onClick={() => onDelete(character.id)}>

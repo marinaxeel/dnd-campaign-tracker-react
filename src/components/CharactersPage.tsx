@@ -3,6 +3,7 @@ import { Character } from '../types/Character';
 import { Campaign } from '../types/Campaign';
 import { getCharacters, saveCharacters, getCampaigns } from '../utils/storage';
 import CharacterDetails from './CharacterDetails';
+import Breadcrumbs, { BreadcrumbItem } from './Breadcrumbs';
 import '../styles/CharactersPage.css';
 
 interface CharactersPageProps {
@@ -76,6 +77,12 @@ const CharactersPage: React.FC<CharactersPageProps> = ({ onBack }) => {
   };
 
   if (showCharacterForm) {
+    const breadcrumbs = [
+      { label: 'Home', onClick: onBack },
+      { label: 'Personaggi', onClick: handleCharacterFormCancel },
+      { label: isCreatingCharacter ? 'Nuovo Personaggio' : editingCharacter?.nome || '' }
+    ];
+
     return (
       <CharacterDetails
         character={editingCharacter}
@@ -84,16 +91,20 @@ const CharactersPage: React.FC<CharactersPageProps> = ({ onBack }) => {
         onSave={handleCharacterFormSave}
         onDelete={handleCharacterFormDelete}
         onBack={handleCharacterFormCancel}
+        breadcrumbs={breadcrumbs}
       />
     );
   }
 
+  const charactersPageBreadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', onClick: onBack },
+    { label: 'Personaggi' }
+  ];
+
   return (
     <div className="characters-page-container">
+      <Breadcrumbs items={charactersPageBreadcrumbs} />
       <div className="characters-page-header">
-        <button className="btn-back" onClick={onBack}>
-          Torna alla home
-        </button>
         <h1>Personaggi</h1>
         <button className="btn-primary" onClick={handleCreate}>
           Crea Personaggio

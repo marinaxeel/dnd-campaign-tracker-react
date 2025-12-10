@@ -7,7 +7,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
   padding-bottom: 20px;
+  border-bottom: 2px solid #8b6f47;
 }
 
 .character-details-header h1 {
